@@ -2,30 +2,34 @@ package com.effers.kaky.nend;
 
 import org.apache.cordova.*;
 import net.nend.android.NendAdInterstitial;
+import net.nend.android.NendAdView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 
 public class Nend extends CordovaPlugin {
+    private FrameLayout mRootLayout = null;
+    private NendAdView mNendAdView = null;
+
     @Override
     public boolean execute(String action, JSONArray inputs, final CallbackContext callbackContext) throws JSONException {
         PluginResult result = null;
         final Activity activity = cordova.getActivity();
 
-        LinearLayout mRootLayout = null;
-        NendAdView mNendAdView = null;
-
         if (action.equals("createBanner")) {
             JSONObject options = inputs.optJSONObject(0);
 
-            mRootLayout = (LinearLayout) findViewById(R.id.root);
-            mNendAdView = new NendAdView(this, options.getInt("bannerSpotId"), options.getString("bannerApiKey"));
+            mRootLayout = (FrameLayout)activity.findViewById(android.R.id.content);
 
+            mNendAdView = new NendAdView(activity, options.getInt("bannerSpotId"), options.getString("bannerApiKey"));
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    mRootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-                    mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
+                    //mRootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+                    mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
                     mNendAdView.loadAd();
                     callbackContext.success();
                 }
