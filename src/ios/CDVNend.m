@@ -25,7 +25,7 @@
 
     int originX = (sf.size.width - bannerWidth) / 2;
     //int originY = sf.size.height - bannerHeight;
-    int originY = 0;
+    int originY = (int) [[UIApplication sharedApplication] statusBarFrame].size.height;
 
     NSLog(@"API Key: %@", [options objectForKey:@"bannerApiKey"]);
     NSLog(@"Spot ID: %@", [options objectForKey:@"bannerSpotId"]);
@@ -44,9 +44,11 @@
     [bannerContainerView addSubview:nadView];
     self.bannerView = bannerContainerView;
 
+    /*
     CGRect wf = self.webView.frame;
     wf.size.height = self.webView.superview.bounds.size.height - 50;
     self.webView.frame = wf;
+    */
 
     [self.webView.superview addSubview:self.bannerView];
 
