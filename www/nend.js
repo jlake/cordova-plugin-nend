@@ -26,23 +26,13 @@ nendExport.createBanner = function(successCallback, failureCallback) {
   );
 };
 
-nendExport.showBanner = function(successCallback, failureCallback) {
+nendExport.removeBanner = function(successCallback, failureCallback) {
   cordova.exec(
     successCallback,
     failureCallback,
     'Nend',
-    'showBanner',
-    [sendOptions()]
-  );
-};
-
-nendExport.hideBanner = function(successCallback, failureCallback) {
-  cordova.exec(
-    successCallback,
-    failureCallback,
-    'Nend',
-    'hideBanner',
-    [sendOptions()]
+    'removeBanner',
+    []
   );
 };
 
@@ -61,7 +51,7 @@ nendExport.showInterstitial = function(successCallback, failureCallback) {
     successCallback,
     failureCallback,
     'Nend',
-    'showInterstitial',
+    'removeInterstitial',
     []
   );
 };
