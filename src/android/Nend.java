@@ -22,13 +22,14 @@ public class Nend extends CordovaPlugin {
 
         if (action.equals("createBanner")) {
             JSONObject options = inputs.optJSONObject(0);
+            final int spotId = options.getInt("bannerSpotId");
+            final String apiKey = options.getString("bannerApiKey");
 
             mRootLayout = (FrameLayout)activity.findViewById(android.R.id.content);
 
-            mNendAdView = new NendAdView(activity, options.getInt("bannerSpotId"), options.getString("bannerApiKey"));
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    //mRootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+                    mNendAdView = new NendAdView(activity, spotId, apiKey);
                     mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
                     mNendAdView.loadAd();
                     callbackContext.success();
@@ -37,7 +38,7 @@ public class Nend extends CordovaPlugin {
         } else if (action.equals("removeBanner")) {
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    if(mRootLayout != null && mNendAdView != null) {
+                    if (mRootLayout != null && mNendAdView != null) {
                         mRootLayout.removeView(mNendAdView);
                     }
                     callbackContext.success();
