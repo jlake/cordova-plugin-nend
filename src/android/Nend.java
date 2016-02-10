@@ -24,11 +24,11 @@ public class Nend extends CordovaPlugin {
 
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    // ’†‰›‰º•”•\¦‚Ìê‡
+                    // ä¸­å¤®ä¸‹éƒ¨è¡¨ç¤ºã®å ´åˆ
                     rootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-                    // 2 NendAdView ‚ğƒŒƒCƒAƒEƒg‚É’Ç‰Á
+                    // 2 NendAdView ã‚’ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã«è¿½åŠ 
                     mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-                    // 3 L‚Ìæ“¾‚ğŠJn
+                    // 3 åºƒå‘Šã®å–å¾—ã‚’é–‹å§‹
                     mNendAdView.loadAd();
                     callbackContext.success();
                 }
