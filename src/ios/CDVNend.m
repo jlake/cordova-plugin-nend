@@ -43,16 +43,6 @@
     [bannerContainerView addSubview:nadView];
     self.bannerView = bannerContainerView;
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
-}
-
-- (void)showBanner:(CDVInvokedUrlCommand *)command {
-    NSLog(@"showBanner");
-
-    CDVPluginResult *pluginResult;
-    NSString *callbackId = command.callbackId;
-
     CGRect wf = self.webView.frame;
     wf.size.height = self.webView.superview.bounds.size.height - 50;
     self.webView.frame = wf;
@@ -63,8 +53,8 @@
     [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
 }
 
-- (void)hideBanner:(CDVInvokedUrlCommand *)command {
-    NSLog(@"hideBanner");
+- (void)removeBanner:(CDVInvokedUrlCommand *)command {
+    NSLog(@"removeBanner");
 
     CDVPluginResult *pluginResult;
     NSString *callbackId = command.callbackId;
@@ -90,16 +80,6 @@
     [[NADInterstitial sharedInstance] loadAdWithApiKey:[options objectForKey:@"interstitialApiKey"]
                                                 spotId:[options objectForKey:@"interstitialSpotId"]];
 
-    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
-}
-
-- (void)showInterstitial:(CDVInvokedUrlCommand *)command {
-    NSLog(@"showInterstitial");
-
-    CDVPluginResult *pluginResult;
-    NSString *callbackId = command.callbackId;
-
     NADInterstitialShowResult result = [[NADInterstitial sharedInstance] showAd];
     switch ( result )
     {
@@ -122,6 +102,18 @@
             NSLog(@"広告のダウンロードが完了していません。");
             break;
     }
+
+    pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+    [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];
+}
+
+- (void)removeInterstitial:(CDVInvokedUrlCommand *)command {
+    NSLog(@"removeInterstitial");
+
+    CDVPluginResult *pluginResult;
+    NSString *callbackId = command.callbackId;
+
+    [[NADInterstitial sharedInstance] dismissAd];
 
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     [self.commandDelegate sendPluginResult:pluginResult callbackId:callbackId];

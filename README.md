@@ -2,20 +2,22 @@
 
 This is a cordova plugin, which provides a way to request Nend ads natively from JavaScript.
 
+Forked from https://github.com/TakayukiSakai/cordova-plugin-nend
+
 ## Supported Platforms (and SDK version)
 
-* Android : nendSDK for Android ver2.6.1
-* iOS : nendSDK for iOS ver2.7.4
+* Android : nendSDK for Android ver3.0.4
+* iOS : nendSDK for iOS ver3.0.3
 
 ## Installation
 
 ```
-cordova plugin add https://github.com/TakayukiSakai/cordova-plugin-nend.git
+cordova plugin add https://github.com/jlake/cordova-plugin-nend.git
 ```
 
 ## Getting Started
 
-### Banner Ad (only iOS is supported)
+### Banner Ad (both iOS and Android are supported)
 
 ```javascript
 var options = {};
@@ -28,11 +30,9 @@ options.bannerBackgroundColor = "0x6096C3"; // background color for banner view 
 Nend.setOptions(options); // If you don't call this function, a key and an id for testing will be used instead.
 Nend.createBanner(); // Being invoked in "deviceready" event might be good.
 
-// ...later
-Nend.showBanner();
+// if you wanna remove Ad
+Nend.removeBanner();
 
-// if you wanna hide existing banner
-Nend.hideBanner();
 ```
 
 ### Interstitial Ad (both iOS and Android are supported)
@@ -45,6 +45,6 @@ options.interstitialSpotId = "YOUR_SPOT_ID";
 Nend.setOptions(options); // If you don't call this function, a key and an id for testing will be used instead.
 Nend.createInterstitial(); // Being invoked in "deviceready" event might be good.
 
-// ...later
-Nend.showInterstitial();
+// if you wanna remove Ad
+Nend.removeInterstitial();
 ```

@@ -22,7 +22,7 @@
         </config-file>
 
         <source-file src="src/android/Nend.java" target-dir="src/com/effers/kaky/nend" />
-        <source-file src="src/android/NendAd/nendSDK-2.6.1.jar" target-dir="libs" />
+        <source-file src="src/android/NendAd/nendSDK-3.0.4.jar" target-dir="libs" />
 
         <framework src="com.google.android.gms:play-services-ads:+" />
      </platform>

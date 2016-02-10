@@ -6,9 +6,8 @@
 @interface CDVNend : CDVPlugin <NADInterstitialDelegate>
 
 - (void)createBanner:(CDVInvokedUrlCommand *)command;
-- (void)showBanner:(CDVInvokedUrlCommand *)command;
-- (void)hideBanner:(CDVInvokedUrlCommand *)command;
+- (void)removeBanner:(CDVInvokedUrlCommand *)command;
 - (void)createInterstitial:(CDVInvokedUrlCommand *)command;
-- (void)showInterstitial:(CDVInvokedUrlCommand *)command;
+- (void)removeInterstitial:(CDVInvokedUrlCommand *)command;
 
 @end
