@@ -59,10 +59,6 @@
     CDVPluginResult *pluginResult;
     NSString *callbackId = command.callbackId;
 
-    CGRect wf = self.webView.frame;
-    wf.size.height = self.webView.superview.bounds.size.height;
-    self.webView.frame = wf;
-
     [self.bannerView removeFromSuperview];
 
     pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];

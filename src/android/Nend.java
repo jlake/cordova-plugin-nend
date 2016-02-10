@@ -24,11 +24,8 @@ public class Nend extends CordovaPlugin {
 
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    // 中央下部表示の場合
                     rootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
-                    // 2 NendAdView をレイアウトに追加
                     mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
-                    // 3 広告の取得を開始
                     mNendAdView.loadAd();
                     callbackContext.success();
                 }
