@@ -13,8 +13,8 @@ public class Nend extends CordovaPlugin {
         PluginResult result = null;
         final Activity activity = cordova.getActivity();
 
-        private LinearLayout mRootLayout;
-        private NendAdView mNendAdView;
+        LinearLayout mRootLayout = null;
+        NendAdView mNendAdView = null;
 
         if (action.equals("createBanner")) {
             JSONObject options = inputs.optJSONObject(0);
@@ -33,7 +33,9 @@ public class Nend extends CordovaPlugin {
         } else if (action.equals("removeBanner")) {
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    mRootLayout.removeView(mNendAdView);
+                    if(mRootLayout != null && mNendAdView != null) {
+                        mRootLayout.removeView(mNendAdView);
+                    }
                     callbackContext.success();
                 }
             });
