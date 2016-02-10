@@ -24,7 +24,8 @@
     CGRect sf = self.webView.superview.bounds;
 
     int originX = (sf.size.width - bannerWidth) / 2;
-    int originY = sf.size.height - bannerHeight;
+    //int originY = sf.size.height - bannerHeight;
+    int originY = 0;
 
     NSLog(@"API Key: %@", [options objectForKey:@"bannerApiKey"]);
     NSLog(@"Spot ID: %@", [options objectForKey:@"bannerSpotId"]);
