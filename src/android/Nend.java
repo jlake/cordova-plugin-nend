@@ -12,8 +12,8 @@ public class Nend extends CordovaPlugin {
     public boolean execute(String action, JSONArray inputs, final CallbackContext callbackContext) throws JSONException {
         PluginResult result = null;
         final Activity activity = cordova.getActivity();
-        
-        private LinearLayout mRootLayout
+
+        private LinearLayout mRootLayout;
         private NendAdView mNendAdView;
 
         if (action.equals("createBanner")) {
@@ -24,7 +24,7 @@ public class Nend extends CordovaPlugin {
 
             activity.runOnUiThread(new Runnable() {
                 public void run() {
-                    rootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
+                    mRootLayout.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.BOTTOM);
                     mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams( LayoutParams.WRAP_CONTENT,LayoutParams.WRAP_CONTENT));
                     mNendAdView.loadAd();
                     callbackContext.success();
