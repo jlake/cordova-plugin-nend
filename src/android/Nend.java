@@ -8,6 +8,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.app.Activity;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
@@ -24,13 +26,15 @@ public class Nend extends CordovaPlugin {
             JSONObject options = inputs.optJSONObject(0);
             final int spotId = options.getInt("bannerSpotId");
             final String apiKey = options.getString("bannerApiKey");
+            //final int bgColor = Integer.decode(options.getString("bannerBackgroundColor"));
 
             mRootLayout = (FrameLayout)activity.findViewById(android.R.id.content);
 
             activity.runOnUiThread(new Runnable() {
                 public void run() {
                     mNendAdView = new NendAdView(activity, spotId, apiKey);
-                    mRootLayout.addView(mNendAdView, new LinearLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT));
+                    //mNendAdView.setBackgroundColor(bgColor);
+                    mRootLayout.addView(mNendAdView, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT, Gravity.CENTER_HORIZONTAL));
                     mNendAdView.loadAd();
                     callbackContext.success();
                 }
